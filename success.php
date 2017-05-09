@@ -70,7 +70,7 @@
           while($row = $result->fetch_assoc()) {
             echo '<div class="col-md-4">';
             echo "<h2>" .$row["headline"] ."</h2>";
-            echo "<p>Posted in " .$row["latitude"] .$row["longitude"] ." by " .$row["author"] ."</p>";
+            echo "<h3>Posted in " .$row["latitude"] .$row["longitude"] ." by " .$row["author"] ."</h3>";
             echo "<p>" .$row["text"] . "</p>";
             echo '</div>';
           }
