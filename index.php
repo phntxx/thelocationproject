@@ -25,7 +25,50 @@
     }
   }
 
-  //CHECKING PREVIOUS LOGIN INFO
+  if(isset($_GET['register'])) {
+    $error = false;
+    $email = $_POST['email'];
+    $passwort = $_POST['passwort'];
+    $passwort2 = $_POST['passwort2'];
+
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+      echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
+      $error = true;
+    }
+
+    if(strlen($passwort) == 0) {
+      echo 'Bitte ein Passwort angeben<br>';
+      $error = true;
+    }
+
+    if($passwort != $passwort2) {
+      echo 'Die Passwörter müssen übereinstimmen<br>';
+      $error = true;
+    }
+
+    if(!$error) {
+      $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
+      $result = $statement->execute(array('email' => $email));
+      $user = $statement->fetch();
+      if($user !== false) {
+        echo 'Diese E-Mail-Adresse ist bereits vergeben<br>';
+        $error = true;
+      }
+    }
+
+    if(!$error) {
+      $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
+      $statement = $pdo->prepare("INSERT INTO users (email, passwort) VALUES (:email, :passwort)");
+      $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash));
+      if($result) {
+        echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
+        $showFormular = false;
+      } else {
+        echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
+      }
+    }
+  }
+
   if(isset($_SESSION['username'])){
     header("Location: ./success.php");
     die();
@@ -60,13 +103,26 @@
     <div class="container">
       <h1>thelocationproject</h1>
       <p>the new social network that helps you find parties.</p>
-      <p><a class="btn btn-primary btn-lg" href="../login/index.php" role="button">Sign in.</a></p>
+      <p><a class="btn btn-primary btn-lg" onclick="showRegister()" role="button">Sign in.</a></p>
     </div>
+  </div>
+  <div id="registerform">
+    <h1>This is my DIV element.</h1>
   </div>
   <hr>
   <footer>
     <p>&copy; 2017 phntxx.</p>
   </footer>
+  <script>
+    function showRegister() {
+        var x = document.getElementById('registerform');
+        if (x.style.display === 'none') {
+            x.style.display = 'block';
+        } else {
+            x.style.display = 'none';
+        }
+    }
+  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="src/js/jquery.min.js"><\/script>')</script>
   <script src="src/js/bootstrap.min.js"></script>
