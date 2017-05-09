@@ -9,6 +9,7 @@
 <?php
   session_start();
   $pdo = new PDO('mysql:host=localhost;dbname=login', 'root', 'raspberry');
+
   if(isset($_GET['login'])){
     $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
     $result = $statement->execute(array('email' => $_POST['email']));
@@ -26,20 +27,21 @@
   if(isset($_GET['register'])) {
     $error = false;
     $email = $_POST['email'];
-    $passwort = $_POST['passwort'];
-    $passwort2 = $_POST['passwort2'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    $password2 = $_POST['password2'];
 
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
       echo 'Bitte eine gültige E-Mail-Adresse eingeben<br>';
       $error = true;
     }
 
-    if(strlen($passwort) == 0) {
+    if(strlen($password) == 0) {
       echo 'Bitte ein Passwort angeben<br>';
       $error = true;
     }
 
-    if($passwort != $passwort2) {
+    if($password != $password2) {
       echo 'Die Passwörter müssen übereinstimmen<br>';
       $error = true;
     }
@@ -55,9 +57,9 @@
     }
 
     if(!$error) {
-      $passwort_hash = password_hash($passwort, PASSWORD_DEFAULT);
-      $statement = $pdo->prepare("INSERT INTO users (email, passwort) VALUES (:email, :passwort)");
-      $result = $statement->execute(array('email' => $email, 'passwort' => $passwort_hash));
+      $password_hash = password_hash($password, PASSWORD_DEFAULT);
+      $statement = $pdo->prepare("INSERT INTO users (email, password, username) VALUES (:email, :password, :username)");
+      $result = $statement->execute(array('email' => $email, 'password' => $password_hash, 'username' => $username));
       if($result) {
         echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
         $showFormular = false;
@@ -104,25 +106,34 @@
       <p><a class="btn btn-primary btn-lg" onclick="showRegister()" role="button">Sign in.</a></p>
     </div>
   </div>
-  <div id="registerform">
-    <h1>This is my DIV element.</h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h2>Register</h2>
+        <form action="?register=1" method="post">
+          <div class="form-group">
+            <input type="text" class="form-control" name="username" placeholder="Your Username">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="email" placeholder="Your E-Mail Address">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="password" placeholder="Your Password">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="password2" placeholder="Confirm your Password">
+          </div>
+          <div class="form-group">
+            <input class="btn btn-default" type="submit" value="Register.">
+          </div>
+        </form>
+      </div>
+    </div>
+    <hr>
+    <footer>
+      <p>&copy; 2017 phntxx.</p>
+    </footer>
   </div>
-  <hr>
-  <footer>
-    <p>&copy; 2017 phntxx.</p>
-  </footer>
-  <script>
-    var x = document.getElementByID('registerform');
-    x.style.display = 'block';
-    function showRegister() {
-        var x = document.getElementById('registerform');
-	if (x.style.display === 'none') {
-            x.style.display = 'block';
-        } else {
-            x.style.display = 'none';
-        }
-    }
-  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="src/js/jquery.min.js"><\/script>')</script>
   <script src="src/js/bootstrap.min.js"></script>
