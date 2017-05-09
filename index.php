@@ -8,8 +8,6 @@
 </head>
 <?php
   session_start();
-
-  //LOGIN FUNCTION
   $pdo = new PDO('mysql:host=localhost;dbname=login', 'root', 'raspberry');
   if(isset($_GET['login'])){
     $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
@@ -114,9 +112,11 @@
     <p>&copy; 2017 phntxx.</p>
   </footer>
   <script>
+    var x = document.getElementByID('registerform');
+    x.style.display = 'block';
     function showRegister() {
         var x = document.getElementById('registerform');
-        if (x.style.display === 'none') {
+	if (x.style.display === 'none') {
             x.style.display = 'block';
         } else {
             x.style.display = 'none';
