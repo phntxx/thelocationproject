@@ -57,12 +57,21 @@
     }
 
     if(!$error) {
+      $statement = $pdo->prepare("SELECT * FROM users WHERE username = :username");
+      $result = $statement->execute(array('username' => $username));
+      $user = $statement->fetch();
+      if($user !== false) {
+        echo 'Username taken.<br>';
+        $error = true;
+      }
+    }
+
+    if(!$error) {
       $password_hash = password_hash($password, PASSWORD_DEFAULT);
       $statement = $pdo->prepare("INSERT INTO users (email, password, username) VALUES (:email, :password, :username)");
       $result = $statement->execute(array('email' => $email, 'password' => $password_hash, 'username' => $username));
       if($result) {
-        echo 'Du wurdest erfolgreich registriert. <a href="login.php">Zum Login</a>';
-        $showFormular = false;
+        echo 'Du wurdest erfolgreich registriert.';
       } else {
         echo 'Beim Abspeichern ist leider ein Fehler aufgetreten<br>';
       }
