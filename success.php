@@ -52,7 +52,7 @@
         <form action="?upload=1" method="post">
           <div class="form-group">
             <label>Tagline of your Party</label>
-            <input type="text" class="form-control" name="headline" placeholder="tagline of your party">
+            <input type="text" class="form-control" name="headline">
           </div>
           <div class="form-group">
             <label>Tell about your Party</label>
