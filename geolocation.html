@@ -3,8 +3,8 @@
     <script>
       navigator.geolocation.getCurrentPosition(function(location) {
         var latitude = location.coords.latitude;
-        var longitude = location.coords.longitude;
-        window.location.href = "gather.php?lat=" + latitude + "&lng" + longitude;
+	var longitude = location.coords.longitude;
+        window.location = "gather.php?lat=" + latitude + "&lng" + longitude;
       });
     </script>
   </body>
