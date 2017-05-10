@@ -1,8 +1,8 @@
 <?php
   session_start();
 
-  $latitude = $_GET["lat"];
-  $longitude = $_GET["lng"];
+  $latitude = $_POST["lat"];
+  $longitude = $_POST["lng"];
   $author = $_SESSION["AUTHOR"];
   $text = $_SESSION["TEXT"];
   $headline = $_SESSION["HEADLINE"];

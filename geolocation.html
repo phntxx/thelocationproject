@@ -1,11 +1,21 @@
 <html>
+  <head>
+    <script src="src/js/jquery.min.js"></script>
+  </head>
   <body>
     <script>
-      navigator.geolocation.getCurrentPosition(function(location) {
-        var latitude = location.coords.latitude;
-	var longitude = location.coords.longitude;
-        window.location = "gather.php?lat=" + latitude + "&lng" + longitude;
-      });
+      window.onload=function(){
+        if(navigator.geolocation){
+          navigator.geolocation.getCurrentPosition(showPosition);
+        }else{
+          alert("Geolocation is not supported by this browser.");
+        }
+      }
+      function showPosition(pos){
+        $.post('saver.php',{'lat':pos.coords.latitude,'lng':pos.coords.longitude},function(res){
+          console.log(res);
+        });
+      }
     </script>
   </body>
 </html>
