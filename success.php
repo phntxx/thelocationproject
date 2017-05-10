@@ -51,10 +51,12 @@
         <h2>New Post</h2>
         <form action="?upload=1" method="post">
           <div class="form-group">
+            <label>Tagline of your Party</label>
             <input type="text" class="form-control" name="headline" placeholder="tagline of your party">
           </div>
           <div class="form-group">
-            <textarea rows="4" cols="50" name="txt" placeholder="tell us about your party."></textarea>
+            <label>Tell about your Party</label>
+            <textarea class="form-control" rows="4" name="txt"></textarea>
           </div>
           <div class="form-group">
             <input class="btn btn-default" type="submit" value="post.">
