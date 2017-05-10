@@ -127,10 +127,10 @@
             <input type="text" class="form-control" name="email" placeholder="Your E-Mail Address">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="password" placeholder="Your Password">
+            <input type="password" class="form-control" name="password" placeholder="Your Password">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="password2" placeholder="Confirm your Password">
+            <input type="password" class="form-control" name="password2" placeholder="Confirm your Password">
           </div>
           <div class="form-group">
             <input class="btn btn-default" type="submit" value="Register.">

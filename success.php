@@ -55,9 +55,6 @@
             <input type="text" class="form-control" name="headline" placeholder="tagline of your party">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" name="location" placeholder="in which city is your party?">
-          </div>
-          <div class="form-group">
             <textarea rows="4" cols="50" name="txt" placeholder="tell us about your party."></textarea>
           </div>
           <div class="form-group">
@@ -94,22 +91,15 @@
     $headline = $_POST['headline'];
     $text = $_POST['txt'];
     $location = $_POST['location'];
-    echo $location;
-    $pdo = new PDO('mysql:host=localhost;dbname=data', 'root', 'raspberry');
-    if((strlen($headline) != 0) && (strlen($text) != 0) && (strlen($location) != 0)){
-      $statement = $pdo->prepare("INSERT INTO newsfeed (headline, text, author, latitude, longitude) VALUES (:headline, :text, :author, :latitude, :longitude)");
-      $result = $statement->execute(array('headline' => $headline, 'text' => $text, 'author' => $author, 'latitude' => $location, 'longitude' => $location));
-      if($result) {
-        header("Location: success.php");
-        die();
-      } else {
-        header("Location: upload.php");
-        die();
-      }
+    if((strlen($headline) != 0) && (strlen($text) != 0))){
+      $_SESSION["AUTHOR"] = $author;
+      $_SESSION["TEXT"] = $text;
+      $_SESSION["HEADLINE"] = $headline;
+      header("Location: geolocation.html");
+      die();
     } else {
       header("Location: success.php");
       die();
     }
   }
 ?>
-
