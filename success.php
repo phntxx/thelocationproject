@@ -42,8 +42,7 @@
   <div class="jumbotron">
     <div class="container">
       <h1>Hello, <?php echo $username;?></h1>
-      <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+      <p>Take a look at what you missed.</p>
     </div>
   </div>
   <div class="container">
@@ -69,7 +68,7 @@
             echo "<h2>" .$row["headline"] ."</h2>";
             echo "<h3>Posted by " .$row["author"] ."</h3>";
             echo "<p>" .$row["text"] . "</p>";
-            echo "<iframe width='600' height='450' frameborder='0' style='border:0'src='https://www.google.com/maps/embed/v1/place?key=AIzaSyAccLsTB--zXURQu1EnGCT_Ml6uY9itHBk&q=" .$row["latitude"] ."," .$row["longitude"] ."&amp" ."' allowfullscreen></iframe>";
+            echo "<iframe width='100%' height='100%' frameborder='0' style='border:0'src='https://www.google.com/maps/embed/v1/place?key=AIzaSyAccLsTB--zXURQu1EnGCT_Ml6uY9itHBk&q=" .$row["latitude"] ."," .$row["longitude"] ."&amp" ."' allowfullscreen></iframe>";
 	    echo '</div>';
           }
         }
