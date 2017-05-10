@@ -91,7 +91,7 @@
     $headline = $_POST['headline'];
     $text = $_POST['txt'];
     $location = $_POST['location'];
-    if((strlen($headline) != 0) && (strlen($text) != 0))){
+    if((strlen($headline) != 0) && (strlen($text) != 0)){
       $_SESSION["AUTHOR"] = $author;
       $_SESSION["TEXT"] = $text;
       $_SESSION["HEADLINE"] = $headline;
