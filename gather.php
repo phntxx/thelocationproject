@@ -1,6 +1,7 @@
 <?php
   session_start();
 
+  if(isset($_SESSION['username'])){
   $latitude = $_GET["lat"];
   $longitude = $_GET["lng"];
   $author = $_SESSION["AUTHOR"];
@@ -15,6 +16,11 @@
    $_SESSION["TEXT"] = NULL;
    $_SESSION["HEADLINE"] = NULL;
     header("Location: success.php");
+    die();
+  }
+
+  } else {
+    header("Location: index.php");
     die();
   }
 ?>
