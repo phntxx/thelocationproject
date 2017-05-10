@@ -69,6 +69,7 @@
             echo "<h2>" .$row["headline"] ."</h2>";
             echo "<h3>Posted in " .$row["latitude"] .$row["longitude"] ." by " .$row["author"] ."</h3>";
             echo "<p>" .$row["text"] . "</p>";
+            echo "<iframe width='600' height='450' frameborder='0' style='border:0'src='https://www.google.com/maps/embed/v1/place?key=AIzaSyAccLsTB--zXURQu1EnGCT_Ml6uY9itHBk&location=" .$latitude ."," .$longitude . "' allowfullscreen></iframe>"
             echo '</div>';
           }
         }
