@@ -1,0 +1,11 @@
+<html>
+  <body>
+    <script>
+      navigator.geolocation.getCurrentPosition(function(location) {
+        var latitude = location.coords.latitude;
+        var longitude = location.coords.longitude;
+        window.location.href = "gather.php?lat=" + latitude + "&lng" + longitude;
+      });
+    </script>
+  </body>
+</html>
