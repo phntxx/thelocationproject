@@ -14,6 +14,11 @@ if(!isset($_SESSION['username'])) {
   <title>new post</title>
   <link href="src/css/bootstrap.min.css" rel="stylesheet">
   <link href="src/css/jumbotron.css" rel="stylesheet">
+  <link rel="shortcut icon" type="image/x-icon" href="src/favicon.ico">
+  <link rel="apple-touch-icon" href="src/favicon.ico">
+  <link rel="apple-touch-icon" sizes="152x152" href="src/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="src/favicon.ico">
+  <link rel="apple-touch-icon" sizes="167x167" href="src/favicon.ico">
 </head>
 <body>
   <nav class="navbar navbar-inverse navbar-fixed-top">
