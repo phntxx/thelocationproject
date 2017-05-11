@@ -115,9 +115,15 @@
   </nav>
   <div class="jumbotron">
     <div class="container">
-      <h1>thelocationproject</h1>
-      <p>the new social network that helps you find parties.</p>
-      <p><a class="btn btn-primary btn-lg" onclick="showRegister()" role="button">Sign in.</a></p>
+      <div class="row">
+        <div class="col-md-4">
+          <img src="src/fabicon.png" height="100%" width="100%">
+        </div>
+        <div class="col-md-8">
+          <h1>thelocationproject</h1>
+          <p>the new social network that helps you find parties.</p>
+          <p><a class="btn btn-primary btn-lg" onclick="showRegister()" role="button">Sign in.</a></p>
+        </div>
     </div>
   </div>
   <div class="container">
