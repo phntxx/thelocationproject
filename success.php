@@ -46,28 +46,32 @@
   </nav>
   <div class="jumbotron">
     <div class="container">
-      <h1>Hello, <?php echo $username;?></h1>
-      <p>Take a look at what you missed.</p>
+      <div class="row">
+        <div class="col-md-8">
+          <h1>Hello, <?php echo $username;?></h1>
+          <p>Take a look at what you missed.</p>
+        </div>
+        <div class="col-md-4">
+          <h2>New Post</h2>
+          <form action="?upload=1" method="post">
+            <div class="form-group">
+              <label>Tagline of your Party</label>
+              <input type="text" class="form-control" name="headline">
+            </div>
+            <div class="form-group">
+              <label>Tell about your Party</label>
+              <textarea class="form-control" rows="4" name="txt"></textarea>
+            </div>
+            <div class="form-group">
+              <input class="btn btn-default" type="submit" value="post.">
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
   <div class="container">
     <div class="row">
-      <div class="col-md-4">
-        <h2>New Post</h2>
-        <form action="?upload=1" method="post">
-          <div class="form-group">
-            <label>Tagline of your Party</label>
-            <input type="text" class="form-control" name="headline">
-          </div>
-          <div class="form-group">
-            <label>Tell about your Party</label>
-            <textarea class="form-control" rows="4" name="txt"></textarea>
-          </div>
-          <div class="form-group">
-            <input class="btn btn-default" type="submit" value="post.">
-          </div>
-        </form>
-      </div>
       <?php
         if ($result->num_rows > 0) {
           while($row = $result->fetch_assoc()) {
