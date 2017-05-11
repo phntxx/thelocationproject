@@ -5,11 +5,7 @@
   <title>thelocationproject</title>
   <link href="src/css/bootstrap.min.css" rel="stylesheet">
   <link href="src/css/jumbotron.css" rel="stylesheet">
-  <link rel="shortcut icon" type="image/x-icon" href="src/favicon.ico">
-  <link rel="apple-touch-icon" href="src/favicon.ico">
-  <link rel="apple-touch-icon" sizes="152x152" href="src/favicon.ico">
-  <link rel="apple-touch-icon" sizes="180x180" href="src/favicon.ico">
-  <link rel="apple-touch-icon" sizes="167x167" href="src/favicon.ico">
+  <link rel="shortcut icon" type="image/x-icon" href="src/favicon.png">
 </head>
 <?php
   session_start();
@@ -116,13 +112,12 @@
   <div class="jumbotron">
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
-          <img src="src/fabicon.png" height="100%" width="100%">
+        <div class="col-md-3">
+          <center><img src="src/favicon.png"></center>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-9">
           <h1>thelocationproject</h1>
           <p>the new social network that helps you find parties.</p>
-          <p><a class="btn btn-primary btn-lg" onclick="showRegister()" role="button">Sign in.</a></p>
         </div>
     </div>
   </div>
