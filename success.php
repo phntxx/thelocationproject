@@ -7,7 +7,7 @@
     if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
     }
-    $conn = new mysqli("localhost", "root", "raspberry", "data");
+    $conn = new mysqli("localhost", "root", "raspberry", "thelocationproject_data");
     $sql = "SELECT * FROM newsfeed";
     $result = $conn->query($sql);
     $username = $_SESSION['username'];

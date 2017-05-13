@@ -9,7 +9,7 @@
 </head>
 <?php
   session_start();
-  $pdo = new PDO('mysql:host=localhost;dbname=login', 'root', 'raspberry');
+  $pdo = new PDO('mysql:host=localhost;dbname=thelocationproject_data', 'root', 'raspberry');
 
   if(isset($_GET['login'])){
     $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");

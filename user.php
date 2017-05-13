@@ -14,7 +14,7 @@
     die();
   } else {
     $username = $_SESSION['username'];
-    $conn = new mysqli("localhost", "root", "raspberry", "data");
+    $conn = new mysqli("localhost", "root", "raspberry", "thelocationproject_data");
     $sql = "SELECT * FROM newsfeed WHERE author = '$username'";
     $result = $conn->query($sql);
 ?>
