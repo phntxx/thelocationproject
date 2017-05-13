@@ -9,17 +9,14 @@
 </head>
 <?php
   session_start();
-  $pdo = new PDO('mysql:host=localhost;dbname=login', 'root', 'raspberry');
-
   if(!isset($_SESSION['username'])){
     header("Location: ./index.php");
     die();
   } else {
     $username = $_SESSION['username'];
     $conn = new mysqli("localhost", "root", "raspberry", "data");
-    $sql = "SELECT * FROM newsfeed WHERE author == " .$username;
+    $sql = "SELECT * FROM newsfeed WHERE author = '$username'";
     $result = $conn->query($sql);
-
 ?>
 <body>
   <nav class="navbar navbar-inverse navbar-fixed-top">
