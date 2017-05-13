@@ -16,6 +16,8 @@
      $_SESSION["HEADLINE"] = NULL;
       header("Location: ../success.php");
       die();
+    } else {
+      die("ERROR.");
     }
   } else {
     header("Location: ../index.php");
