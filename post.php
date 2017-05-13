@@ -35,22 +35,24 @@
       </div>
     </div>
   </nav>
-  <div class="container">
-    <h1>Hackaburg!</h1>
-    <div class="row">
+
       <?php
         if ($result->num_rows > 0) {
           while($row = $result->fetch_assoc()) {
+            echo "<div class='container'>";
+            echo "<h1>" .$row["headline"] ."</h1>";
+            echo "<div class='row'>";
             echo "<div class='col-md-6'>";
             echo "<p>" .$row["text"] . "</p>";
             echo "</div>";
             echo "<div class='col-md-6'>";
             echo "<iframe width='100%' height='75%' frameborder='0' style='border:0'src='https://www.google.com/maps/embed/v1/place?key=AIzaSyAccLsTB--zXURQu1EnGCT_Ml6uY9itHBk&q=" .$row["latitude"] ."," .$row["longitude"] ."&amp" ."' allowfullscreen></iframe>";
-	    echo '</div>';
+	          echo "</div>";
+            echo "</div>";
           }
         }
       ?>
-    </div>
+
     <hr>
     <footer>
       <p>&copy; 2017 phntxx.</p>
