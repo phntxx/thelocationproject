@@ -82,7 +82,7 @@
             echo "<h3>Posted by " .$row["author"] ."</h3>";
             echo "<p>" .$row["text"] . "</p>";
             echo "<iframe width='100%' height='50%' frameborder='0' style='border:0'src='https://www.google.com/maps/embed/v1/place?key=AIzaSyAccLsTB--zXURQu1EnGCT_Ml6uY9itHBk&q=" .$row["latitude"] ."," .$row["longitude"] ."&amp" ."' allowfullscreen></iframe>";
-            echo "</a>"
+            echo "</a>";
 	          echo '</div>';
           }
         }
