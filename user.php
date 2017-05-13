@@ -11,8 +11,8 @@
   session_start();
   $pdo = new PDO('mysql:host=localhost;dbname=login', 'root', 'raspberry');
 
-  if(isset($_SESSION['username'])){
-    header("Location: ./success.php");
+  if(!isset($_SESSION['username'])){
+    header("Location: ./index.php");
     die();
   } else {
     $username = $_SESSION['username'];
