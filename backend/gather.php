@@ -6,7 +6,7 @@
     $author = $_SESSION["AUTHOR"];
     $text = $_SESSION["TEXT"];
     $headline = $_SESSION["HEADLINE"];
-
+    $uuid = uniqid();
     $pdo = new PDO('mysql:host=localhost;dbname=thelocationproject_data', 'root', 'raspberry');
     $statement = $pdo->prepare("INSERT INTO newsfeed (id, headline, text, author, latitude, longitude) VALUES (:id, :headline, :text, :author, :latitude, :longitude)");
     $result = $statement->execute(array('id' => $uuid,'headline' => $headline, 'text' => $text, 'author' => $author, 'latitude' => $latitude, 'longitude' => $longitude));
