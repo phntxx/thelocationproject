@@ -14,7 +14,7 @@
     die();
   } else {
     $username = $_SESSION['username'];
-    $id = $_GET['id'];
+    $id = substr($_GET['id'], 0, -3);
     $conn = new mysqli("localhost", "root", "raspberry", "thelocationproject_data");
     $sql = "SELECT * FROM newsfeed WHERE id = '$id'";
     $result = $conn->query($sql);
@@ -35,33 +35,18 @@
       </div>
     </div>
   </nav>
-  <div class="jumbotron">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3">
-          <center><img src="src/favicon.png"></center>
-        </div>
-        <div class="col-md-9">
-          <h1><?php echo $username; ?></h1>
-          <p>the new social network that helps you find parties.</p>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="container">
-    <h1>Your Posts</h1>
+    <h1>Hackaburg!</h1>
     <div class="row">
       <?php
         if ($result->num_rows > 0) {
           while($row = $result->fetch_assoc()) {
             echo "<div class='col-md-6'>";
-            echo "<h2>" .$row["headline"] ."</h2>";
-            echo "<h3>Posted by " .$row["author"] ."</h3>";
             echo "<p>" .$row["text"] . "</p>";
             echo "</div>";
             echo "<div class='col-md-6'>";
-            echo "<iframe width='100%' height='50%' frameborder='0' style='border:0'src='https://www.google.com/maps/embed/v1/place?key=AIzaSyAccLsTB--zXURQu1EnGCT_Ml6uY9itHBk&q=" .$row["latitude"] ."," .$row["longitude"] ."&amp" ."' allowfullscreen></iframe>";
-	          echo '</div>';
+            echo "<iframe width='100%' height='75%' frameborder='0' style='border:0'src='https://www.google.com/maps/embed/v1/place?key=AIzaSyAccLsTB--zXURQu1EnGCT_Ml6uY9itHBk&q=" .$row["latitude"] ."," .$row["longitude"] ."&amp" ."' allowfullscreen></iframe>";
+	    echo '</div>';
           }
         }
       ?>
