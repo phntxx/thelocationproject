@@ -39,7 +39,7 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <form class="navbar-form navbar-right">
-          <button class="btn btn-danger"><a href="logout.php">Log Out</a></button>
+          <button class="btn btn-danger"><a href="backend/logout.php">Log Out</a></button>
         </form>
       </div>
     </div>
@@ -106,7 +106,7 @@
       $_SESSION["AUTHOR"] = $author;
       $_SESSION["TEXT"] = $text;
       $_SESSION["HEADLINE"] = $headline;
-      header("Location: post/geolocation.html");
+      header("Location: backend/geolocation.html");
       die();
     } else {
       header("Location: success.php");

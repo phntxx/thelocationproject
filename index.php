@@ -119,6 +119,7 @@
           <h1>thelocationproject</h1>
           <p>the new social network that helps you find parties.</p>
         </div>
+      </div>
     </div>
   </div>
   <div class="container">
