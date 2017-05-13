@@ -76,7 +76,7 @@
       <?php
         if ($result->num_rows > 0) {
           while($row = $result->fetch_assoc()) {
-            echo "<div class="col-md-4">";
+            echo "<div class='col-md-4'>";
             echo "<a href=post.php?id=" .$row['id'];
             echo "<h2>" .$row["headline"] ."</h2>";
             echo "<h3>Posted by " .$row["author"] ."</h3>";
