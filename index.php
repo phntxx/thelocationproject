@@ -68,9 +68,10 @@
     }
 
     if(!$error) {
+      $uuid = uniqid();
       $password_hash = password_hash($password, PASSWORD_DEFAULT);
-      $statement = $pdo->prepare("INSERT INTO users (email, password, username) VALUES (:email, :password, :username)");
-      $result = $statement->execute(array('email' => $email, 'password' => $password_hash, 'username' => $username));
+      $statement = $pdo->prepare("INSERT INTO users (id, email, password, username) VALUES (:id, :email, :password, :username)");
+      $result = $statement->execute(array('id' => $uuid,'email' => $email, 'password' => $password_hash, 'username' => $username));
       if($result) {
         echo 'Du wurdest erfolgreich registriert.';
       } else {

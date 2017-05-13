@@ -8,8 +8,8 @@
     $headline = $_SESSION["HEADLINE"];
 
     $pdo = new PDO('mysql:host=localhost;dbname=thelocationproject_data', 'root', 'raspberry');
-    $statement = $pdo->prepare("INSERT INTO newsfeed (headline, text, author, latitude, longitude) VALUES (:headline, :text, :author, :latitude, :longitude)");
-    $result = $statement->execute(array('headline' => $headline, 'text' => $text, 'author' => $author, 'latitude' => $latitude, 'longitude' => $longitude));
+    $statement = $pdo->prepare("INSERT INTO newsfeed (id, headline, text, author, latitude, longitude) VALUES (:id, :headline, :text, :author, :latitude, :longitude)");
+    $result = $statement->execute(array('id' => $uuid,'headline' => $headline, 'text' => $text, 'author' => $author, 'latitude' => $latitude, 'longitude' => $longitude));
     if($result) {
      $_SESSION["AUTHOR"] = NULL;
      $_SESSION["TEXT"] = NULL;
