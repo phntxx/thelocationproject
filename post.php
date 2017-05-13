@@ -18,6 +18,25 @@
     $conn = new mysqli("localhost", "root", "raspberry", "thelocationproject_data");
     $sql = "SELECT * FROM newsfeed WHERE id = '$id'";
     $result = $conn->query($sql);
+    $sql1 = "SELECT * FROM comments WHERE related_id = '$id'";
+    $result1 = $conn->query($sql1);
+
+    if(isset($_GET['comment'])){
+      $text = $_POST['text'];
+      $author = $username;
+      $related_id = $id;
+      $uuid = uniqid();
+
+      $pdo = new PDO('mysql:host=localhost;dbname=thelocationproject_data', 'root', 'raspberry');
+      $statement = $pdo->prepare("INSERT INTO comments (id, related_id, text, author) VALUES (:id, :related_id, :text, :author)");
+      $result = $statement->execute(array('id' => $uuid,'related_id' => $related_id, 'text' => $text, 'author' => $author));
+      if($result) {
+        header("Location: post.php");
+        die();
+      } else {
+        die("ERROR.");
+      }
+    }
 ?>
 <body>
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -35,24 +54,45 @@
       </div>
     </div>
   </nav>
-
+  <div class='container'>
+    <div class='row'>
       <?php
-        if ($result->num_rows > 0) {
-          while($row = $result->fetch_assoc()) {
-            echo "<div class='container'>";
+        if ($result->num_rows > 0){
+          while($row = $result->fetch_assoc()){
             echo "<h1>" .$row["headline"] ."</h1>";
-            echo "<div class='row'>";
             echo "<div class='col-md-6'>";
             echo "<p>" .$row["text"] . "</p>";
             echo "</div>";
             echo "<div class='col-md-6'>";
             echo "<iframe width='100%' height='75%' frameborder='0' style='border:0'src='https://www.google.com/maps/embed/v1/place?key=AIzaSyAccLsTB--zXURQu1EnGCT_Ml6uY9itHBk&q=" .$row["latitude"] ."," .$row["longitude"] ."&amp" ."' allowfullscreen></iframe>";
-	          echo "</div>";
             echo "</div>";
           }
         }
       ?>
 
+      <div class="col-md-3">
+        <form action="?comment=1" method="post">
+          <div class="form-group">
+            <label>What would you like to say?</label>
+            <textarea class="form-control" rows="4" name="txt"></textarea>
+          </div>
+          <div class="form-group">
+            <input class="btn btn-default" type="submit" value="post.">
+          </div>
+        </form>
+      </div>
+
+      <?php
+        if($result1->num_rows > 0){
+          while($row = $resule->fetch_assoc()){
+            echo "<div class='col-md-3'>";
+            echo "<h3>" .row["author"] ."</h3>";
+            echo "<p>" .row["text"] ."</h3>";
+            echo "</div>";
+          }
+        }
+      ?>
+    </div>
     <hr>
     <footer>
       <p>&copy; 2017 phntxx.</p>
