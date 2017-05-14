@@ -32,24 +32,21 @@
     $result1 = $conn->query($sql1);
 
     if(isset($_GET['comment'])){
-      $text = $_POST['txt'];
-      echo $text;
-      $author = $username;
-      echo $author;
       $related_id = $_SESSION['id'];
-      echo $related_id;
       $uuid = uniqid();
-      /*
+
       $pdo = new PDO('mysql:host=localhost;dbname=thelocationproject_data', 'root', 'raspberry');
       $statement = $pdo->prepare("INSERT INTO comments (id, related_id, text, author) VALUES (:id, :related_id, :text, :author)");
-      $result = $statement->execute(array('id' => $uuid,'related_id' => $related_id, 'text' => $text, 'author' => $author));
+      $result = $statement->execute(array('id' => $uuid,'related_id' => $related_id, 'text' => $_POST['txt'], 'author' => $username));
       if($result) {
-        header("Location: post.php");
+        $_SESSION['id'] = NULL;
+        $href = "./post.php?id=" .$related_id;
+        header("Location: ");
         die();
       } else {
         die("ERROR.");
       }
-      */
+
     }
 ?>
 <body>
