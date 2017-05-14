@@ -24,11 +24,13 @@
 
     if(isset($_GET['comment'])){
       $text = $_POST['text'];
+      echo $text;
       $author = $username;
+      echo $author;
       $related_id = $_SESSION['id'];
       echo $related_id;
       $uuid = uniqid();
-
+      /*
       $pdo = new PDO('mysql:host=localhost;dbname=thelocationproject_data', 'root', 'raspberry');
       $statement = $pdo->prepare("INSERT INTO comments (id, related_id, text, author) VALUES (:id, :related_id, :text, :author)");
       $result = $statement->execute(array('id' => $uuid,'related_id' => $related_id, 'text' => $text, 'author' => $author));
@@ -38,6 +40,7 @@
       } else {
         die("ERROR.");
       }
+      */
     }
 ?>
 <body>
