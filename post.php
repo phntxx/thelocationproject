@@ -15,6 +15,7 @@
   } else {
     $username = $_SESSION['username'];
     $id = $_GET['id'];
+    $_SESSION['id'] = $id;
     $conn = new mysqli("localhost", "root", "raspberry", "thelocationproject_data");
     $sql = "SELECT * FROM newsfeed WHERE id = '$id'";
     $result = $conn->query($sql);
@@ -24,7 +25,8 @@
     if(isset($_GET['comment'])){
       $text = $_POST['text'];
       $author = $username;
-      $related_id = $id;
+      $related_id = $_SESSION['id'];
+      echo $related_id;
       $uuid = uniqid();
 
       $pdo = new PDO('mysql:host=localhost;dbname=thelocationproject_data', 'root', 'raspberry');
