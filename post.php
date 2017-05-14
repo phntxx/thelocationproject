@@ -14,7 +14,17 @@
     die();
   } else {
     $username = $_SESSION['username'];
-    $id = substr($_GET['id'], 0, -3);
+
+    if(isset($_GET['id'])){
+      $id = $_GET['id'];
+      $_SESSION['id'] = $id;
+    } else if(isset($_SESSION['id'])){
+      $id = $_SESSION['id'];
+    } else {
+      header("Location: ./success.php");
+      die();
+    }
+
     $conn = new mysqli("localhost", "root", "raspberry", "thelocationproject_data");
     $sql = "SELECT * FROM newsfeed WHERE id = '$id'";
     $result = $conn->query($sql);
@@ -22,21 +32,22 @@
     $result1 = $conn->query($sql1);
 
     if(isset($_GET['comment'])){
-      $text = $_POST['text'];
-      $author = $username;
-      $related_id = $id;
+      $related_id = $_SESSION['id'];
       $uuid = uniqid();
 
       $pdo = new PDO('mysql:host=localhost;dbname=thelocationproject_data', 'root', 'raspberry');
       $statement = $pdo->prepare("INSERT INTO comments (id, related_id, text, author) VALUES (:id, :related_id, :text, :author)");
-      $result = $statement->execute(array('id' => $uuid,'related_id' => $related_id, 'text' => $text, 'author' => $author));
+      $result = $statement->execute(array('id' => $uuid,'related_id' => $related_id, 'text' => $_POST['txt'], 'author' => $username));
       if($result) {
-        header("Location: post.php");
+        $_SESSION['id'] = NULL;
+        $href = "./post.php?id=" .$related_id;
+        header("Location: " .$href);
         die();
       } else {
         header("Location: success.php");
         die("ERROR.");
       }
+
     }
 ?>
 <body>
@@ -85,10 +96,10 @@
 
       <?php
         if($result1->num_rows > 0){
-          while($row = $resule->fetch_assoc()){
+          while($row1 = $result1->fetch_assoc()){
             echo "<div class='col-md-3'>";
-            echo "<h3>" .row["author"] ."</h3>";
-            echo "<p>" .row["text"] ."</h3>";
+            echo "<h3>" .$row1["author"] ."</h3>";
+            echo "<p>" .$row1["text"] ."</h3>";
             echo "</div>";
           }
         }
