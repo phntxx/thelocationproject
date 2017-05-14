@@ -14,7 +14,7 @@
     die();
   } else {
     $username = $_SESSION['username'];
-    $id = substr($_GET['id'], 0, -3);
+    $id = $_GET['id'];
     $conn = new mysqli("localhost", "root", "raspberry", "thelocationproject_data");
     $sql = "SELECT * FROM newsfeed WHERE id = '$id'";
     $result = $conn->query($sql);
