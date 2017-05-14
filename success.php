@@ -83,7 +83,7 @@
             if(strlen($row["text"]) > 255){
               echo "<p>" .substr($row["text"],0,252) . "...</p>";
             } else if(strlen($row["text"]) < 255){
-              echo "<p>" .$longstr = str_pad(row["text"], 255) ."</p>";
+              echo "<p>" .$longstr = str_pad($row["text"], 255) ."</p>";
             } else if (strlen($row["text"]) == 255){
               echo "<p>" .$row["text"] . "</p>";
             }
