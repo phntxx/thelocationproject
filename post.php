@@ -81,11 +81,11 @@
           }
         }
       ?>
-
+      <hr>
       <div class="col-md-3">
         <form action="?comment=1" method="post">
           <div class="form-group">
-            <label id="label">What would you like to say?</label>
+            <label id="label"></label>
             <textarea class="form-control" id="textarea" maxlength="140" rows="4" name="txt"></textarea>
           </div>
           <div class="form-group">
@@ -112,15 +112,15 @@
   </div>
   <script>
     var textarea = document.getElementById("textarea");
-    var default = "What would you like to say?";
+    var standard  = "What would you like to say?";
     var submitbutton = document.getElementById("submitbtn");
     var label = document.getElementById("label");
     var check = function() {
       if(textarea.value.length < 140) {
-        label.innerHTML = default + " (" + (140 - text.area.value.length) + ")";
+        label.innerHTML = standard + " (" + (140 - textarea.value.length) + ")";
         submitbutton.disabled = false;
       } else if(textarea.value.length = 140 || textarea.value.length > 140){
-        label.innerHTML = default + " (0!)";
+        label.innerHTML = standard + " (0!)";
         submitbutton.disabled = true;
       }
     }
