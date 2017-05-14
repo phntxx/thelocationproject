@@ -14,8 +14,17 @@
     die();
   } else {
     $username = $_SESSION['username'];
-    $id = $_GET['id'];
-    $_SESSION['id'] = $id;
+
+    if(isset($_GET['id'])){
+      $id = $_GET['id'];
+      $_SESSION['id'] = $id;
+    } else if(isset($_SESSION['id'])){
+      $id = $_SESSION['id'];
+    } else {
+      header("Location: ./success.php");
+      die();
+    }
+
     $conn = new mysqli("localhost", "root", "raspberry", "thelocationproject_data");
     $sql = "SELECT * FROM newsfeed WHERE id = '$id'";
     $result = $conn->query($sql);
@@ -23,7 +32,7 @@
     $result1 = $conn->query($sql1);
 
     if(isset($_GET['comment'])){
-      $text = $_POST['text'];
+      $text = $_POST['txt'];
       echo $text;
       $author = $username;
       echo $author;
