@@ -34,6 +34,7 @@
         header("Location: post.php");
         die();
       } else {
+        header("Location: success.php");
         die("ERROR.");
       }
     }
@@ -73,11 +74,11 @@
       <div class="col-md-3">
         <form action="?comment=1" method="post">
           <div class="form-group">
-            <label>What would you like to say?</label>
-            <textarea class="form-control" rows="4" name="txt"></textarea>
+            <label id="label">What would you like to say?</label>
+            <textarea class="form-control" id="textarea" maxlength="140" rows="4" name="txt"></textarea>
           </div>
           <div class="form-group">
-            <input class="btn btn-default" type="submit" value="post.">
+            <input class="btn btn-default" id="submitbtn" type="submit" value="post.">
           </div>
         </form>
       </div>
@@ -98,6 +99,22 @@
       <p>&copy; 2017 phntxx.</p>
     </footer>
   </div>
+  <script>
+    var textarea = document.getElementById("textarea");
+    var default = "What would you like to say?";
+    var submitbutton = document.getElementById("submitbtn");
+    var label = document.getElementById("label");
+    var check = function() {
+      if(textarea.value.length < 140) {
+        label.innerHTML = default + " (" + (140 - text.area.value.length) + ")";
+        submitbutton.disabled = false;
+      } else if(textarea.value.length = 140 || textarea.value.length > 140){
+        label.innerHTML = default + " (0!)";
+        submitbutton.disabled = true;
+      }
+    }
+    setInterval(check, 100);
+  </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="src/js/jquery.min.js"><\/script>')</script>
   <script src="src/js/bootstrap.min.js"></script>
