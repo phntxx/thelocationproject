@@ -95,10 +95,10 @@
 
       <?php
         if($result1->num_rows > 0){
-          while($row = $resule->fetch_assoc()){
+          while($row1 = $result1->fetch_assoc()){
             echo "<div class='col-md-3'>";
-            echo "<h3>" .$row["author"] ."</h3>";
-            echo "<p>" .$row["text"] ."</h3>";
+            echo "<h3>" .$row1["author"] ."</h3>";
+            echo "<p>" .$row1["text"] ."</h3>";
             echo "</div>";
           }
         }
