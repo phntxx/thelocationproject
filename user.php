@@ -17,6 +17,9 @@
     $conn = new mysqli("localhost", "root", "raspberry", "thelocationproject_data");
     $sql = "SELECT * FROM newsfeed WHERE author = '$username'";
     $result = $conn->query($sql);
+
+    $sql1 = "SELECT * FROM comments WHERE author = '$username'";
+    $result1 = $conn->query($sql1);
 ?>
 <body>
   <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -54,13 +57,13 @@
         if ($result->num_rows > 0) {
           while($row = $result->fetch_assoc()) {
             echo '<div class="col-md-4">';
-            echo "<a href=post.php?id=" .$row['id'] .">";
+            echo "<a href='post.php?id=" .$row['id'] ."'>";
             echo "<h2>" .$row["headline"] ."</h2>";
             echo "<h3>Posted by " .$row["author"] ."</h3>";
             if(strlen($row["text"]) > 255){
               echo "<p>" .substr($row["text"],0,252) . "...</p>";
             } else if(strlen($row["text"]) < 255){
-              echo "<p>" .$longstr = str_pad(row["text"], 255) ."</p>";
+              echo "<p>" .$longstr = str_pad($row["text"], 255) ."</p>";
             } else if (strlen($row["text"]) == 255){
               echo "<p>" .$row["text"] . "</p>";
             }
@@ -69,6 +72,21 @@
             echo "</a>";
           }
         }
+      ?>
+    </div>
+    <h1>Your Comments</h1>
+    <div class="row">
+      <?php
+        if ($result1->num_rows > 0) {
+          while($row = $result1->fetch_assoc()){
+            echo '<div class="col-md-3">';
+            echo "<a href=post.php?id='" .$row["related_id"]  ."'>";
+            echo "<p>" .$row["text"] ."</p>";
+            echo "</a>"
+            echo '</div>';
+          }
+        }
+
       ?>
     </div>
     <hr>
