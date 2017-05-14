@@ -41,7 +41,7 @@
       if($result) {
         $_SESSION['id'] = NULL;
         $href = "./post.php?id=" .$related_id;
-        header("Location: ");
+        header("Location: " .$href);
         die();
       } else {
         die("ERROR.");
