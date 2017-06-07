@@ -13,7 +13,7 @@
     header("Location: ./index.php");
     die();
   } else {
-    $username = $_SESSION['username'];
+    $username = $_GET['u'];//$_SESSION['username'];
     $conn = new mysqli("localhost", "root", "raspberry", "thelocationproject_data");
     $sql = "SELECT * FROM newsfeed WHERE author = '$username'";
     $result = $conn->query($sql);
@@ -51,7 +51,7 @@
     </div>
   </div>
   <div class="container">
-    <h1>Your Posts</h1>
+    <h1>Posts</h1>
     <div class="row">
       <?php
         if ($result->num_rows > 0) {
@@ -74,7 +74,7 @@
         }
       ?>
     </div>
-    <h1>Your Comments</h1>
+    <h1>Comments</h1>
     <div class="row">
       <?php
         if ($result1->num_rows > 0) {

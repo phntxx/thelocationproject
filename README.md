@@ -83,6 +83,9 @@ CREATE TABLE `comments` (
 exit;
 ```
 
+you also need to edit the code to fit your credentials, the ones inside are the ones for the local inaccessible test server, but I'll try to find a better option.
+
+
 4. cloning the repository
 
 ```

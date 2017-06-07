@@ -39,7 +39,7 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <form class="navbar-form navbar-right">
-          <button class="btn btn-success"><a href="user.php"><?php echo $username; ?></a></button>
+          <button class="btn btn-success"><a href=<?php echo "user.php?u=" .$username; ?>><?php echo $username; ?></a></button>
           <button class="btn btn-danger"><a href="backend/logout.php">Log Out</a></button>
         </form>
       </div>
