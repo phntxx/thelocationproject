@@ -1,11 +1,11 @@
 # thelocationproject
 
-##requirements
+## requirements
 - a web server (thelocationproject was developed with apache2)
 - php5
 - MySQL
 
-##installation
+## installation
 
 1. installing php5 and MySQL
 
