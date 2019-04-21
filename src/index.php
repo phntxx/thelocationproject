@@ -92,13 +92,12 @@
     ));
     $user = $loginStatement -> fetch();
 
-    if ($user === true && password_verify($_POST['password'], $user['password'])) {
+    if (isset($user) && password_verify($_POST['password'], $user['password'])) {
       $_SESSION['username'] = $user['username'];
       header("Location: ./success.php");
       die();
     } else {
-      echo $user;
-      //echo password_verify($_POST['password'], $user['password']);
+      echo (password_verify($_POST['password'], $user['password'])) ? 'valid' : 'invalid';
     }
 
   }
@@ -110,7 +109,7 @@
       return false;
     }
 
-    if (strlen($password) == 0 || strlen($validatedpassword == 0)) {
+    if (strlen($password) == 0 || strlen($validatedpassword) == 0) {
       echo 'Please enter a password<br>';
       return false;
     }
@@ -120,10 +119,12 @@
       return false;
     }
 
+    if (!checkIfExists($pdo, 'username', $_POST['email']) || !checkIfExists($pdo, 'username', $_POST['email'])) return false;
+
     return true;
   }
 
-  function checkIfExists ($type, $value) {
+  function checkIfExists ($pdo, $type, $value) {
     $statement = $pdo -> prepare ('SELECT * FROM users WHERE ' . $type . ' = :value');
     $result = $statement -> execute (array('value' => $value));
     if (($statement -> fetch()) !== false) {
@@ -136,13 +137,9 @@
   function handleRegistration ($pdo) {
     $validRegistration = validateRegistration ($_POST['email'], $_POST['username'], $_POST['password'], $_POST['password2']);
 
-    if ($validRegistration)  $vaildRegistration = checkIfExists('email', $_POST['email']);
-    if ($validRegistration) $vaildRegistration = checkIfExists('username', $_POST['email']);
-
     if($validRegistration) {
-      $statement = $pdo->prepare("INSERT INTO users (id, email, password, username) VALUES (:id, :email, :password, :username)");
+      $statement = $pdo -> prepare("INSERT INTO users (id, email, password, username) VALUES (:id, :email, :password, :username)");
       $result = $statement->execute(array('id' => uniqid(),'email' => $_POST['email'], 'password' => password_hash($password, PASSWORD_DEFAULT), 'username' => $_POST['username']));
-
       echo ($result) ? ('Registration successful.') : ('There was an error while trying to register. Please try again later.');
     }
   }

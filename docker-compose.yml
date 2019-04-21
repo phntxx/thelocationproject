@@ -21,3 +21,15 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: tiger
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: 'png-phpmyadmin'
+    links:
+      - database
+    environment:
+      PMA_HOST: database
+      PMA_PORT: 3306
+    ports:
+      - '8080:80'
+    volumes:
+      - /sessions
