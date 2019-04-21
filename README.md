@@ -20,8 +20,8 @@ theLocationProject has been ported to Docker, making the installation extremely 
 
 2. Clone the theLocationProject-repository and build the container
 ```
-$ git clone https://github.com/phntxx/thelocationproject.git
-$ cd thelocationproject/
+$ git clone https://github.com/phntxx/theLocationProject.git
+$ cd theLocationProject/
 $ docker-compose up
 ```
 
