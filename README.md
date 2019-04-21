@@ -2,6 +2,7 @@
 
 <div align="center">
   :tada: <b>know what parties are happening</b> :tada:   
+  
   a project by bastian "phntxx" meissner
 </div>
 
